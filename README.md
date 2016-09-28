@@ -6,4 +6,5 @@
 ![weixin](./images/erweima.jpg)
 
 * 游戏截图
+
 ![weixin](./images/2048.png)
