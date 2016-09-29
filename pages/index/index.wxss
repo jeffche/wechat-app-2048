@@ -1,43 +1,48 @@
 .score {
     display: flex;
-    height: 5rem;
-    padding: 25px 3px 25px 3px;
 }
 
 .title{
-    width: 33%;
+    flex:1;
+    height: 150rpx;
+    line-height: 150rpx;
     background:deepskyblue;
-    margin: 3%;
+    margin: 20rpx 20rpx 20rpx 40rpx;
     text-align: center;
-    line-height: 4rem;
     font-size: 1.5rem;
     color: white;
-    border-radius: 8px;
+    border-radius: 8rpx;
 }
 
+
 .scoredetail{
-    width: 33%;
+    flex:1;
+    height: 150rpx;
     background:#eee4da;
-    margin: 3%;
+    margin: 20rpx;
     text-align: center;
-    border-radius: 8px;
+    border-radius: 8rpx;
+}
+
+.scoredetail:last-child{
+    margin-right: 40rpx;
 }
 
 .scoredesc{
-    line-height: 2rem;
-    font-size: 0.8em;
+    font-size: 0.8rem;
+    line-height: 60rpx;
 }
 .scorenumber{
-    line-height: 2rem;
+    line-height: 70rpx;
 }
 
 .bc_{
-  height:5rem;
-  width: 5rem;
-  margin: 3px 3px;
-  line-height: 5rem;
+  height:152rpx;
+  width: 152rpx;
+  margin: 6rpx 6rpx;
+  line-height: 152rpx;
   text-align: center;
-  font-size: 30px;
+  font-size: 60rpx;
   color: #fff7eb;
 }
 .bc_0{
@@ -100,10 +105,15 @@
     background:#eec22e;
 }
 .bc{
-  display: flex;
+	display: flex;
 }
 
 #bc_cavas{
-  width:100%;
-  background-color: #b8af9e;
+    display: flex;
+    height: 670rpx;
+    background-color: #b8af9e;
+    justify-content: center;
+    align-items: center;
+    flex-wrap:wrap;
+    margin: 40rpx 40rpx;
 }
