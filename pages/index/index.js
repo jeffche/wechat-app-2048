@@ -3,12 +3,32 @@
 var app = getApp()
 Page({
   data: {
+    score: 0,
+    maxscore: 0,
     startx: 0,
     starty: 0,
     endx:0,
     endy:0,
     direction:'',
-    numbers:[[2,2,2,2],[0,2,8,0],[0,4,0,0],[0,0,0,0]],
+    numbers:[[0,0,2,2],[0,2,4,0],[0,4,0,0],[0,0,0,0]],
+    modalHidden: true,
+  },
+  onLoad: function () {
+    //调用API从本地缓存中获取数据
+    var maxscore = wx.getStorageSync('maxscore')
+    if(!maxscore) maxscore = 0
+    this.setData({
+      maxscore:maxscore
+      })
+  },
+  storeScore:function(){
+      console.log(this.data.maxscore, this.data.score)
+      if(this.data.maxscore < this.data.score){
+      this.setData({
+        maxscore:this.data.score
+        })
+        wx.setStorageSync('maxscore', this.data.maxscore)
+      }
   },
   tapStart: function(event){
     this.setData({
@@ -58,7 +78,6 @@ Page({
         break;
       default:
     }
-    
   },
 
   //左划
@@ -76,6 +95,9 @@ Page({
             arr[i][j] = arr[i][j] *2;
             arr[i][j+k] = 0;
             change = true;
+            this.setData({
+            score: this.data.score + arr[i][j]/2
+            })
             break;
           }
         }
@@ -97,6 +119,7 @@ Page({
     this.setData({
           numbers:arr
           })
+    this.storeScore()
     return change
   },
   //右滑
@@ -114,6 +137,9 @@ Page({
             arr[i][j] = arr[i][j] *2;
             arr[i][j-k] = 0;
             change = true;
+            this.setData({
+            score: this.data.score + arr[i][j]/2
+            })
             break;
           }
         }
@@ -135,6 +161,7 @@ Page({
     this.setData({
           numbers:arr
           })
+    this.storeScore()
     return change
   },
   //下划
@@ -152,6 +179,9 @@ Page({
             arr[j][i] = arr[j][i] *2;
             arr[j-k][i] = 0;
             change = true
+            this.setData({
+            score: this.data.score + arr[j][i]/2
+            })
             break;
           }
         }
@@ -173,6 +203,7 @@ Page({
     this.setData({
           numbers:arr
           })
+    this.storeScore()
     return change
   },
   //上滑
@@ -190,6 +221,9 @@ Page({
             arr[j][i] = arr[j][i] *2;
             arr[j+k][i] = 0;
             change = true
+            this.setData({
+            score: this.data.score + arr[j][i]/2
+            })
             break;
           }
         }
@@ -211,8 +245,10 @@ Page({
     this.setData({
           numbers:arr
           })
+    this.storeScore()
     return change
   },
+  //随机插入
   randInsert: function(){
     var arr = this.data.numbers
     //随机2或4
@@ -231,5 +267,34 @@ Page({
     this.setData({
       numbers:arr
       })
-  }
+    this.checkGame()
+  },
+  checkGame: function(){
+    var arr = this.data.numbers
+    for(var i = 0; i < 4; i++){
+      for(var j = 0; j < 4; j++){
+        if(arr[i][j] == 0) return;
+      }
+    }
+    for(var i = 0; i < 3; i++){
+      for(var j = 0; j < 3; j++){
+        if(arr[i][j] == arr[i+1][j] || arr[i][j] == arr[i][j+1]) return;
+      }
+    }
+        
+    for(var j = 0; j < 3; j++){
+      if(arr[3][j] == arr[3][j+1]) return;
+      if(arr[j][3] == arr[j+1][3]) return;
+    }
+    this.setData({
+      modalHidden: false,
+    })
+  },
+  modalChange:function(){
+    this.setData({
+      score: 0,
+      numbers:[[0,0,2,2],[0,2,4,0],[0,4,0,0],[0,0,0,0]],
+      modalHidden: true,
+    })
+  },
 })
