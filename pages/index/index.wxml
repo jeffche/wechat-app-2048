@@ -16,6 +16,6 @@
     </view>
 </view>
 </view>
-<modal class="modal" hidden="{{modalHidden}}" no-cancel bindconfirm="modalChange">
-  <view> Game Over </view>
+<modal class="modal" hidden="{{modalHidden}}" bindconfirm="modalChange" bindcancel="modalCancle">
+  <view> 游戏结束，重新开始吗？ </view>
 </modal>

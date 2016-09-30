@@ -63,6 +63,7 @@ Page({
   },
 
   mergeAll: function(dir){
+    this.checkGame();
     switch(dir){
       case 'left':
         return this.mergeleft();
@@ -267,7 +268,7 @@ Page({
     this.setData({
       numbers:arr
       })
-    this.checkGame()
+    //this.checkGame()
   },
   checkGame: function(){
     var arr = this.data.numbers
@@ -294,6 +295,11 @@ Page({
     this.setData({
       score: 0,
       numbers:[[0,0,2,2],[0,2,4,0],[0,4,0,0],[0,0,0,0]],
+      modalHidden: true,
+    })
+  },
+  modalCancle:function(){
+    this.setData({
       modalHidden: true,
     })
   },
