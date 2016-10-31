@@ -37,7 +37,7 @@
 }
 
 .bc_{
-  height:152rpx;
+  height: 152rpx;
   width: 152rpx;
   margin: 6rpx 6rpx;
   line-height: 152rpx;

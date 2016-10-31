@@ -253,7 +253,7 @@ Page({
   randInsert: function(){
     var arr = this.data.numbers
     //随机2或4
-    num = Math.random() < 0.8 ? 2 : 4
+    var num = Math.random() < 0.8 ? 2 : 4
     //计算随机位置
     var zeros = [];
     for(var i = 0; i < 4; i++){
