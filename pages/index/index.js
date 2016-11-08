@@ -21,6 +21,10 @@ Page({
       maxscore:maxscore
       })
   },
+  onPullDownRefresh:function(){
+    this.mergebottom();
+    wx.stopPullDownRefresh();
+  },
   storeScore:function(){
       console.log(this.data.maxscore, this.data.score)
       if(this.data.maxscore < this.data.score){
@@ -62,6 +66,7 @@ Page({
     return (num > 0) ? 'bottom' : 'top';
   },
 
+
   mergeAll: function(dir){
     this.checkGame();
     switch(dir){
@@ -96,9 +101,12 @@ Page({
             arr[i][j] = arr[i][j] *2;
             arr[i][j+k] = 0;
             change = true;
-            this.setData({
-            score: this.data.score + arr[i][j]/2
-            })
+            // this.setData({
+            // score: this.data.score + arr[i][j]/2
+            // })
+            if(this.data.score < arr[i][j]){
+              this.setData({score:arr[i][j]})
+            }
             break;
           }
         }
@@ -138,9 +146,12 @@ Page({
             arr[i][j] = arr[i][j] *2;
             arr[i][j-k] = 0;
             change = true;
-            this.setData({
-            score: this.data.score + arr[i][j]/2
-            })
+            // this.setData({
+            // score: this.data.score + arr[i][j]/2
+            // })
+            if(this.data.score < arr[i][j]){
+              this.setData({score:arr[i][j]})
+            }
             break;
           }
         }
@@ -180,9 +191,12 @@ Page({
             arr[j][i] = arr[j][i] *2;
             arr[j-k][i] = 0;
             change = true
-            this.setData({
-            score: this.data.score + arr[j][i]/2
-            })
+            // this.setData({
+            // score: this.data.score + arr[j][i]/2
+            // })
+            if(this.data.score < arr[j][i]){
+              this.setData({score:arr[j][i]})
+            }
             break;
           }
         }
@@ -222,9 +236,12 @@ Page({
             arr[j][i] = arr[j][i] *2;
             arr[j+k][i] = 0;
             change = true
-            this.setData({
-            score: this.data.score + arr[j][i]/2
-            })
+            // this.setData({
+            // score: this.data.score + arr[j][i]/2
+            // })
+            if(this.data.score < arr[j][i]){
+              this.setData({score:arr[j][i]})
+            }
             break;
           }
         }
