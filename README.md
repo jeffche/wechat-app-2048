@@ -5,7 +5,6 @@
 
 ![weixin](./images/2048.png)
 
-* 所在公司  [番薯小报](http://fanshuapp.com)
 * 个人微信：chefendou
 
 ![weixin](./images/erweima.jpg)
